@@ -83,12 +83,12 @@ skip-auth-prefixes:
 experimental:
   quic-go-disable-gso: true  
      
-# 管理面板配置
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-external-ui-name: zashboard
-external-ui: ui
-external-controller: 127.0.0.1:9090
-secret: yyds666
+# 管理面板配置（裸核时启用）
+# external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+# external-ui-name: zashboard
+# external-ui: ui
+# external-controller: 127.0.0.1:9090
+# secret: yyds666
 
 # 配置存储
 profile:
@@ -134,12 +134,14 @@ hosts:
 # DNS配置
 dns:
   enable: true
+  prefer-h3: true
   ipv6: true
   use-hosts: true
   listen: 0.0.0.0:1053
   fake-ip-range: 198.18.0.1/16
   enhanced-mode: fake-ip
   respect-rules: true
+  direct-nameserver-follow-policy: true
   nameserver:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
@@ -150,7 +152,7 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver-policy:
-    "rule-set:zju": "system"
+    rule-set:zju: system
   fake-ip-filter:
     - rule-set:fakeip-filter
     - rule-set:Direct
@@ -253,7 +255,7 @@ rules:
   # 直接连接规则（优先于拦截规则）
   - DOMAIN-SUFFIX,zju.edu.cn,直接连接
   - RULE-SET,zju,直接连接
-  - RULE-SET,direct,直接连接
+  - RULE-SET,self_direct,直接连接
   - RULE-SET,Microsoft,微软服务
   - RULE-SET,Apple,苹果服务 
   - RULE-SET,Google,谷歌服务
@@ -389,6 +391,6 @@ rule-providers:
   fakeip-filter:  {<<: *BehaviorDN, url: https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.mrs}
   # 自维护规则
   zju:    {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/zju.yaml}
-  direct: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/direct.yaml}
+  self_direct: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/self_direct.yaml}
 
 # ==================== EOF ====================
