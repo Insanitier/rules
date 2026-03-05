@@ -154,7 +154,7 @@ dns:
     - rule-set:Direct
     - rule-set:Private
     - rule-set:China
-    - ruel-set:zju
+    - rule-set:zju
     - '+.pub.3gppnetwork.org'
     - "+.bing.com"
     - +.miwifi.com
