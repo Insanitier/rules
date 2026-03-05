@@ -149,34 +149,18 @@ dns:
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  nameserver-policy:
-    "*.zju.edu.cn": "system"
-    "*.icsr.wiki": "system"
-    "*.zjusec.com": "system"
-    "*.zjusec.net": "system"
-    "*.zjusec.top": "system"
-    "*.zjusct.io": "system"
-    "*.zjueva.net": "system"
-    "*.zjuqsc.com": "system"
   fake-ip-filter:
     - rule-set:fakeip-filter
     - rule-set:Direct
     - rule-set:Private
     - rule-set:China
+    - ruel-set:zju
     - '+.pub.3gppnetwork.org'
     - "+.bing.com"
     - +.miwifi.com
     - +.docker.io
     - +.market.xiaomi.com
     - +.push.apple.com
-    - "*.zju.edu.cn"
-    - "*.icsr.wiki"
-    - "*.zjusec.com"
-    - "*.zjusec.net"
-    - "*.zjusec.top"
-    - "*.zjusct.io"
-    - "*.zjueva.net"
-    - "*.zjuqsc.com"
 
 # ==================== 代理策略组 ====================
 proxy-groups:
