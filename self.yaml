@@ -38,18 +38,18 @@ proxy-providers:
   优质服务商: {<<: *BaseProvider, url: 'https://fba02.fbsubcn01.cc:2096/flydsubal/shn7htdmi1jzqtby?clash=1&extend=1', override: {additional-prefix: '[优] '}}
 
 # ==================== 监听器 ====================
-listeners:
-  # Shadowsocks监听器 - 代理节点 玩法：远程连接家庭网络，端口和密码，使用时请修改
-  - {name: SS-IN,  type: shadowsocks, listen: '::', port: 10000, udp: true, password: Xf3#Lp9WqZ, cipher: aes-256-gcm}
-  # Mixed监听器 - 分地区专用端口 玩法：本地浏览器插件或手机APP配置代理，实现分地区访问
-  - {name: MIXED-SG, type: mixed, port: 50000, proxy: 狮城策略}
-  - {name: MIXED-US, type: mixed, port: 50001, proxy: 美国策略}
-  - {name: MIXED-TW, type: mixed, port: 50002, proxy: 台湾策略}
-  - {name: MIXED-HK, type: mixed, port: 50003, proxy: 香港策略}
-  - {name: MIXED-JP, type: mixed, port: 50004, proxy: 日本策略}
-  - {name: MIXED-KR, type: mixed, port: 50005, proxy: 韩国策略}
-  - {name: MIXED-EU, type: mixed, port: 50006, proxy: 欧盟策略}
-  - {name: MIXED-AL, type: mixed, port: 50007, proxy: 默认代理}
+# listeners:
+#   # Shadowsocks监听器 - 代理节点 玩法：远程连接家庭网络，端口和密码，使用时请修改
+#   - {name: SS-IN,  type: shadowsocks, listen: '::', port: 10000, udp: true, password: Xf3#Lp9WqZ, cipher: aes-256-gcm}
+#   # Mixed监听器 - 分地区专用端口 玩法：本地浏览器插件或手机APP配置代理，实现分地区访问
+#   - {name: MIXED-SG, type: mixed, port: 50000, proxy: 狮城策略}
+#   - {name: MIXED-US, type: mixed, port: 50001, proxy: 美国策略}
+#   - {name: MIXED-TW, type: mixed, port: 50002, proxy: 台湾策略}
+#   - {name: MIXED-HK, type: mixed, port: 50003, proxy: 香港策略}
+#   - {name: MIXED-JP, type: mixed, port: 50004, proxy: 日本策略}
+#   - {name: MIXED-KR, type: mixed, port: 50005, proxy: 韩国策略}
+#   - {name: MIXED-EU, type: mixed, port: 50006, proxy: 欧盟策略}
+#   - {name: MIXED-AL, type: mixed, port: 50007, proxy: 默认代理}
 
 # ==================== 核心配置 ====================
 # 基础配置
@@ -254,10 +254,8 @@ rules:
   # 直接连接规则（优先于拦截规则）
   - RULE-SET,zju,直接连接
   - RULE-SET,self_direct,直接连接
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,Apple,苹果服务 
-  - RULE-SET,Google,谷歌服务
   - RULE-SET,github,Github
+  - RULE-SET,Microsoft,微软服务
 
   # 拦截规则
   - RULE-SET,Tracking,REJECT
@@ -274,14 +272,20 @@ rules:
   - RULE-SET,Download,直接连接
   - RULE-SET,AppleCN,直接连接
   - RULE-SET,AI,人工智能
+  - RULE-SET,Google,谷歌服务
+  - RULE-SET,Apple,苹果服务 
   - DOMAIN-KEYWORD,speedtest,网络测试
   - RULE-SET,Speedtest,网络测试
   - RULE-SET,Twitter,推特社交
   - RULE-SET,Telegram,电报消息
   - RULE-SET,SocialMedia,社交平台
   - RULE-SET,NewsMedia,新闻媒体
+  - DOMAIN-SUFFIX,steamcontent.com,DIRECT
+  - DOMAIN-SUFFIX,steamstatic.com,DIRECT
   - DOMAIN-SUFFIX,steamserver.net,DIRECT
-  - RULE-SET,steam,国外流量
+  - DOMAIN-SUFFIX,test.steampowered.com,DIRECT
+  - DOMAIN-SUFFIX,api.steampowered.com,DIRECT
+  - DOMAIN-SUFFIX,rmbgame.net,DIRECT
   - RULE-SET,Games,游戏平台
   - RULE-SET,Crypto,货币平台
   - RULE-SET,Emby,Emby服
@@ -315,8 +319,6 @@ rules:
   - RULE-SET,ProxyIP,国外流量,no-resolve
   - RULE-SET,ChinaIP,国内流量
 
-  # 只代理steam渲染页，其余全部直连
-  - PROCESS-NAME,steamwebhelper.exe,国外流量
   # 兜底规则
   - MATCH,兜底流量
 
@@ -393,6 +395,5 @@ rule-providers:
   # 自维护规则
   zju:    {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/zju.yaml}
   self_direct: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/self_direct.yaml}
-  steam: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/steam.yaml}
 
 # ==================== EOF ====================
