@@ -281,6 +281,7 @@ rules:
   - RULE-SET,SocialMedia,社交平台
   - RULE-SET,NewsMedia,新闻媒体
   - DOMAIN-SUFFIX,steamserver.net,DIRECT
+  - RULE-SET,steam,国外流量
   - RULE-SET,Games,游戏平台
   - RULE-SET,Crypto,货币平台
   - RULE-SET,Emby,Emby服
@@ -392,5 +393,6 @@ rule-providers:
   # 自维护规则
   zju:    {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/zju.yaml}
   self_direct: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/self_direct.yaml}
+  steam: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/steam.yaml}
 
 # ==================== EOF ====================
