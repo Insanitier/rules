@@ -134,7 +134,6 @@ hosts:
 # DNS配置
 dns:
   enable: true
-  prefer-h3: true
   ipv6: true
   use-hosts: true
   listen: 0.0.0.0:1053
