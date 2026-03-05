@@ -266,7 +266,8 @@ proxy-groups:
 rules: 
   # 直接连接规则（优先于拦截规则）
   - DOMAIN-SUFFIX,zju.edu.cn,直接连接
-  - RULE-SET,rules_self_contain,直接连接
+  - RULE-SET,zju,直接连接
+  - RULE-SET,direct,直接连接
   - RULE-SET,Microsoft,微软服务
   - RULE-SET,Apple,苹果服务 
   - RULE-SET,Google,谷歌服务
@@ -401,6 +402,7 @@ rule-providers:
   github:         {<<: *ClassicalYaml, url: https://rule.kelee.one/Clash/GitHub.yaml}
   fakeip-filter:  {<<: *BehaviorDN, url: https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/fakeip-filter.mrs}
   # 自维护规则
-  rules_self_contain: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/rules_self_contain.yaml}
+  zju:    {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/zju.yaml}
+  direct: {<<: *ClassicalYaml, url: https://raw.githubusercontent.com/Insanitier/rules/refs/heads/main/direct.yaml}
 
 # ==================== EOF ====================
