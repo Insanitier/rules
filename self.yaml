@@ -149,6 +149,15 @@ dns:
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  nameserver-policy:
+    "*.zju.edu.cn": "system"
+    "*.icsr.wiki": "system"
+    "*.zjusec.com": "system"
+    "*.zjusec.net": "system"
+    "*.zjusec.top": "system"
+    "*.zjusct.io": "system"
+    "*.zjueva.net": "system"
+    "*.zjuqsc.com": "system"
   fake-ip-filter:
     - rule-set:fakeip-filter
     - rule-set:Direct
@@ -160,6 +169,14 @@ dns:
     - +.docker.io
     - +.market.xiaomi.com
     - +.push.apple.com
+    - "*.zju.edu.cn"
+    - "*.icsr.wiki"
+    - "*.zjusec.com"
+    - "*.zjusec.net"
+    - "*.zjusec.top"
+    - "*.zjusct.io"
+    - "*.zjueva.net"
+    - "*.zjuqsc.com"
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -247,6 +264,14 @@ proxy-groups:
   
 # ==================== 规则路由 ====================
 rules: 
+  # 直接连接规则（优先于拦截规则）
+  - DOMAIN-SUFFIX,zju.edu.cn,直接连接
+  - RULE-SET,rules_self_contain,直接连接
+  - RULE-SET,Microsoft,微软服务
+  - RULE-SET,Apple,苹果服务 
+  - RULE-SET,Google,谷歌服务
+  - RULE-SET,github,Github
+
   # 拦截规则
   - RULE-SET,Tracking,REJECT
   - RULE-SET,AWAvenueAds,REJECT
@@ -254,7 +279,6 @@ rules:
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
 
   # 域名规则
-  - RULE-SET,rules_self_contain,直接连接
   - RULE-SET,ukwifi,UKwifi
   - RULE-SET,LocationDKS,抖快书定位
   - RULE-SET,Private,直接连接
@@ -285,10 +309,6 @@ rules:
   - RULE-SET,spotify,Spotify
   - RULE-SET,media,国外媒体
   # - RULE-SET,Streaming,国际媒体
-  - RULE-SET,Apple,苹果服务 
-  - RULE-SET,Google,谷歌服务
-  - RULE-SET,github,Github
-  - RULE-SET,Microsoft,微软服务
   - RULE-SET,Proxy,国外流量
   - RULE-SET,China,国内流量
 
