@@ -150,9 +150,7 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver-policy:
-    "rule-set:zju": 
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
+    "rule-set:zju": "system"
   fake-ip-filter:
     - rule-set:fakeip-filter
     - rule-set:Direct
